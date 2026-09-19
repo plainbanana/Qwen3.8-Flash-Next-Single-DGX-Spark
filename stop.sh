@@ -80,7 +80,7 @@ else
     ls -1t "$ARCHIVE_DIR"/*-container.log 2>/dev/null | tail -n +21 | while read -r f; do
         _set="${f%-container.log}"
         rm -f "${_set}-container.log" "${_set}-memwatch.log" "${_set}-probe-latency.log" "${_set}-timeout.log" 2>/dev/null || true
-    done
+    done || true
     if [[ "$FORCE" == false ]]; then
         echo "stopping $CONTAINER_NAME (SIGTERM, up to ${STOP_TIMEOUT}s)..."
         docker stop -t "$STOP_TIMEOUT" "$CONTAINER_NAME" >/dev/null 2>&1 || true
